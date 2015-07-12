@@ -1,0 +1,69 @@
+#!/bin/env ruby
+# encoding: utf-8
+
+require 'scraperwiki'
+require 'nokogiri'
+require 'open-uri'
+require 'cgi'
+require 'json'
+require 'date'
+require 'colorize'
+
+require 'pry'
+require 'open-uri/cached'
+OpenURI::Cache.cache_path = '.cache'
+
+def noko_for(url)
+  Nokogiri::HTML(open(url).read) 
+end
+
+def dob_from(str)
+  return if str.to_s.empty?
+  Date.parse(str.sub('Born on ','')).to_s
+end
+
+def scrape_list(url)
+  noko = noko_for(url)
+  noko.css('ul.podnaslovUL p.podnaslovOsebaLI a/@href').map(&:text).each do |link|
+    scrape_person(URI.join(url, link))
+  end
+end
+
+def scrape_person(url)
+  noko = noko_for(url)
+
+  info_box = noko.css('table.panelGrid')
+  panel_box = noko.css('.panelBox100')
+
+  party_data = panel_box.css('a[href*="PoslanskaSkupina"]').text
+  party_id, party = party_data.match(/(.*?) - (.*?) \(.*?\)/).captures rescue binding.pry
+  party.sub!(/\s*Deputy Group\s*/, '')
+
+  data = { 
+    id: url.to_s[/(\d+)$/, 1],
+    name: info_box.css('.outputText h3').text.strip,
+    birth_date: dob_from(info_box.xpath('.//span[contains(.,"Born on")]').text),
+    contact_form: info_box.css('a.outputLinkEx[href*="dz-rs"]/@href').text,
+    constituency: panel_box.xpath('.//span[contains(.,"Electoral district")]/text()').text.sub(': ','').strip,
+    party: party,
+    party_id: party_id,
+    twitter: noko.css('a[href*="twitter"]/@href').text,
+    facebook: noko.css('a[href*="facebook"]/@href').text,
+    image: info_box.css('img.graphicImageEx/@src').text,
+    term: '7',
+    source: url.to_s,
+  }
+  data[:image] = URI.join(url, data[:image]).to_s unless data[:image].to_s.empty?
+  puts data
+  ScraperWiki.save_sqlite([:name, :term], data)
+end
+
+term = {
+  id: '7',
+  name: '7th National Assembly',
+  start_date: '2014-08-01',
+  source: 'https://sl.wikipedia.org/wiki/7._dr%C5%BEavni_zbor_Republike_Slovenije',
+}
+ScraperWiki.save_sqlite([:id], term, 'terms')
+
+scrape_list('http://www.dz-rs.si/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/PoslankeInPoslanci/PoAbecedi')
