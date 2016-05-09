@@ -3,15 +3,18 @@
 
 require 'scraperwiki'
 require 'nokogiri'
-require 'open-uri'
-require 'cgi'
-require 'json'
 require 'date'
 require 'colorize'
 
 require 'pry'
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
+
+class String
+  def tidy
+    self.gsub(/[[:space:]]+/, ' ').strip
+  end
+end
 
 def noko_for(url)
   Nokogiri::HTML(open(url).read) 
@@ -24,12 +27,12 @@ end
 
 def scrape_list(url)
   noko = noko_for(url)
-  noko.css('ul.podnaslovUL p.podnaslovOsebaLI a/@href').map(&:text).each do |link|
-    scrape_person(URI.join(url, link))
+  noko.css('ul.podnaslovUL p.podnaslovOsebaLI a').each do |a|
+    scrape_person(a.text.tidy, URI.join(url, a.attr('href')))
   end
 end
 
-def scrape_person(url)
+def scrape_person(sortname, url)
   noko = noko_for(url)
 
   info_box = noko.css('table.panelGrid')
@@ -42,6 +45,7 @@ def scrape_person(url)
   data = { 
     id: url.to_s[/(\d+)$/, 1],
     name: info_box.css('h3').text.strip,
+    sort_name: sortname,
     birth_date: dob_from(info_box.xpath('.//span[contains(.,"Born on")]').text),
     contact_form: info_box.css('a.outputLinkEx[href*="dz-rs"]/@href').text,
     constituency: panel_box.xpath('.//span[contains(.,"Electoral district")]/text()').text.sub(': ','').strip,
