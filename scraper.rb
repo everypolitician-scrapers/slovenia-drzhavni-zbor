@@ -54,7 +54,7 @@ def scrape_person(url)
     source: url.to_s,
   }
   data[:image] = URI.join(url, data[:image]).to_s unless data[:image].to_s.empty?
-  ScraperWiki.save_sqlite([:name, :term], data)
+  ScraperWiki.save_sqlite([:id, :term], data)
 end
 
 term = {
