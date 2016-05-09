@@ -51,8 +51,6 @@ def scrape_person(sortname, url)
     constituency: panel_box.xpath('.//span[contains(.,"Electoral district")]/text()').text.sub(': ','').strip,
     party: party,
     party_id: party_id,
-    twitter: noko.css('a[href*="twitter"]/@href').text,
-    facebook: noko.css('a[href*="facebook"]/@href').text,
     image: info_box.css('img.graphicImageEx/@src').text,
     term: '7',
     source: url.to_s,
