@@ -41,7 +41,7 @@ def scrape_person(url)
 
   data = { 
     id: url.to_s[/(\d+)$/, 1],
-    name: info_box.css('.outputText h3').text.strip,
+    name: info_box.css('h3').text.strip,
     birth_date: dob_from(info_box.xpath('.//span[contains(.,"Born on")]').text),
     contact_form: info_box.css('a.outputLinkEx[href*="dz-rs"]/@href').text,
     constituency: panel_box.xpath('.//span[contains(.,"Electoral district")]/text()').text.sub(': ','').strip,
