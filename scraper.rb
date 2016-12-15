@@ -59,12 +59,4 @@ def scrape_person(sortname, url)
   ScraperWiki.save_sqlite([:id, :term], data)
 end
 
-term = {
-  id: '7',
-  name: '7th National Assembly',
-  start_date: '2014-08-01',
-  source: 'https://sl.wikipedia.org/wiki/7._dr%C5%BEavni_zbor_Republike_Slovenije',
-}
-ScraperWiki.save_sqlite([:id], term, 'terms')
-
 scrape_list('http://www.dz-rs.si/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/PoslankeInPoslanci/PoAbecedi')
