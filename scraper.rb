@@ -4,7 +4,6 @@
 require 'scraperwiki'
 require 'nokogiri'
 require 'date'
-require 'colorize'
 
 require 'pry'
 require 'open-uri/cached'
