@@ -53,4 +53,5 @@ def scrape_person(sortname, url)
   ScraperWiki.save_sqlite(%i(id term), data)
 end
 
+ScraperWiki.sqliteexecute('DELETE FROM data') rescue nil
 scrape_list('http://www.dz-rs.si/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/PoslankeInPoslanci/PoAbecedi')
