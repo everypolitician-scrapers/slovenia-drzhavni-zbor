@@ -40,7 +40,7 @@ class MemberPage < Scraped::HTML
   end
 
   field :contact_form do
-    info_box.css('a.outputLinkEx[href*="dz-rs"]/@href').text
+    info_box.xpath('.//a[contains(.,"Contact me")]/@href').text
   end
 
   field :constituency do
