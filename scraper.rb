@@ -36,7 +36,13 @@ class MemberPage < Scraped::HTML
   end
 
   field :birth_date do
-    dob_from(info_box.xpath('.//span[contains(.,"Born on")]').text)
+    dob_str = info_box.xpath('.//span[contains(.,"Born on")]').text
+    return if dob_str.to_s.empty?
+    dob_obj = Date.parse(dob_str)
+    # some only have a day+month, not a year, which Date.parse turns
+    # into this year. So skip those.
+    return if dob_obj.year == Date.today.year
+    dob_obj.to_s
   end
 
   field :contact_form do
@@ -64,11 +70,6 @@ class MemberPage < Scraped::HTML
   end
 
   private
-
-  def dob_from(str)
-    return if str.to_s.empty?
-    Date.parse(str.sub('Born on ', '')).to_s
-  end
 
   def info_box
     noko.css('table.panelGrid')
