@@ -18,7 +18,7 @@ response:
     message: OK
   headers:
     Date:
-    - Tue, 24 Jan 2017 06:32:22 GMT
+    - Wed, 25 Jan 2017 11:59:00 GMT
     Strict-Transport-Security:
     - max-age=31536000;includeSubDomains
     X-Powered-By:
@@ -40,15 +40,15 @@ response:
     Content-Language:
     - en
     Set-Cookie:
-    - JSESSIONID=0000NE_CqzIMne-xTtFGtUlApFy:-1; Path=/; HttpOnly
+    - JSESSIONID=0000tU3u4kuh5vEraNBUnLuMtya:-1; Path=/; HttpOnly
     - ZNPCQ003-33313000=fd938310; Path=/; Domain=.dz-rs.si
     X-Mag:
-    - F7360B2047A90E4D;87d9ab10;3286313;usrLkup->0;usrBase->1;getPRBefFind->1;getPRBefFind->1;PRAfterFind->1;portal-en;publicURL->1;http-www;default;SH;FF1End->1;SendSoapStart->1;SendSoapExit->7;EvalII->7;CHd;FP2->7;WS=fd938310;default;FP4->82;C003;
+    - F7360B2047A90E4D;87d9ab10;4222504;usrLkup->1;usrBase->1;getPRBefFind->1;getPRBefFind->1;PRAfterFind->1;portal-en;publicURL->1;http-www;default;SH;FF1End->2;SendSoapStart->2;SendSoapExit->8;EvalII->8;CHd;FP2->8;WS=fd938310;default;FP4->57;C003;
     Via:
-    - 1.1 www.dz-rs.si (Access Gateway-ag-F7360B2047A90E4D-3286313)
+    - 1.1 www.dz-rs.si (Access Gateway-ag-F7360B2047A90E4D-4222504)
     Content-Length:
-    - '12785'
+    - '12782'
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Tue, 24 Jan 2017 06:32:24 GMT
+recorded_at: Wed, 25 Jan 2017 11:59:04 GMT
