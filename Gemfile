@@ -6,6 +6,8 @@ ruby '2.3.3'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 
+gem 'combine_popolo_memberships', github: 'everypolitician/combine_popolo_memberships'
+gem 'execjs'
 gem 'minitest'
 gem 'minitest-around'
 gem 'minitest-vcr'
