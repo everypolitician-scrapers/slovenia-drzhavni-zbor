@@ -1,0 +1,54 @@
+---
+request:
+  method: get
+  uri: http://www.dz-rs.si/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/PoslankeInPoslanci/poslanec?idOseba=P330
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - "*/*"
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Date:
+    - Thu, 28 Jun 2018 20:54:47 GMT
+    Strict-Transport-Security:
+    - max-age=31536000;includeSubDomains
+    X-Powered-By:
+    - Servlet/3.0
+    Content-Type:
+    - text/html; charset=UTF-8
+    Cache-Control:
+    - no-cache
+    - no-cache, no-store, must-revalidate
+    - no-store
+    Expires:
+    - Thu, 01 Jan 1970 00:00:00 GMT
+    Content-Location:
+    - "/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/PoslankeInPoslanci/poslanec/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8zivT39gy2dDB0N_I3cLAw8Q80Ng709DQ0NDAz1w9EUWBq6ARUYu5sY-4YYGBgb6UdRot-DQv2hROo3wAEcDUi1H0NBFH7jC3JDQUARAHUF4NQ!/dz/d5/L2dBISEvZ0FBIS9nQSEh/"
+    Pragma:
+    - no-cache
+    Vary:
+    - Cookie,User-Agent,Accept-Encoding
+    Content-Language:
+    - en
+    Set-Cookie:
+    - JSESSIONID=0000bp7VU89NRu36aFiNDVZqTxz:-1; Path=/; HttpOnly
+    - ZNPCQ003-33313000=fd938310; Path=/; Domain=.dz-rs.si
+    X-Mag:
+    - F7360B2047A90E4D;87d9ab10;69422045;usrLkup->0;usrBase->0;getPRBefFind->0;getPRBefFind->0;PRAfterFind->0;portal-en;publicURL->0;http-www;default;SH;FF1End->0;SendSoapStart->0;SendSoapExit->4;EvalII->4;CHd;FP2->4;WS=fd938310;default;FP4->117;C003;
+    Via:
+    - 1.1 www.dz-rs.si (Access Gateway-ag-F7360B2047A90E4D-69422045)
+    Content-Length:
+    - '12188'
+  body:
+    encoding: ASCII-8BIT
+  http_version: 
+recorded_at: Thu, 28 Jun 2018 20:54:46 GMT
