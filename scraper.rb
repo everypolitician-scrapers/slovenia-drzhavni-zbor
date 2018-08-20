@@ -35,7 +35,7 @@ start = 'http://www.dz-rs.si/wps/portal/en/Home/ODrzavnemZboru/KdoJeKdo/Poslanke
 data = scrape(start => MembersPage).members.map do |mem|
   mem.merge(scrape(mem[:source] => MemberPage).to_h)
 end
-# puts data.map { |r| r.sort_by { |k, _| k }.to_h }
+data.each { |mem| puts mem.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h } if ENV['MORPH_DEBUG']
 
 ScraperWiki.sqliteexecute('DELETE FROM data') rescue nil
 ScraperWiki.save_sqlite(%i[id term], data)
