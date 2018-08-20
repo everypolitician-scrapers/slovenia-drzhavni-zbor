@@ -43,10 +43,6 @@ class MemberPage < Scraped::HTML
     info_box.css('img.graphicImageEx/@src').text
   end
 
-  field :term do
-    '7'
-  end
-
   private
 
   def info_box
