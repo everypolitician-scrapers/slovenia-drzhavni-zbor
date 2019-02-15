@@ -13,7 +13,7 @@ require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
 class MembersPage < Scraped::HTML
-  decorator Scraped::Response::Decorator::AbsoluteUrls
+  decorator Scraped::Response::Decorator::CleanUrls
 
   field :members do
     noko.css('ul.podnaslovUL p.podnaslovOsebaLI a').map do |a|
